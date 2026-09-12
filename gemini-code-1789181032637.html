@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Kebugaran Jasmani - PJOK</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: #666;
+            margin: 0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--bg-color);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .btn {
+            width: 100%;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #219150;
+        }
+
+        .result-box {
+            margin-top: 20px;
+            background-color: #eef9f1;
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .result-item {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .result-item span {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .badge-kurus { background-color: #3498db; }
+        .badge-normal { background-color: #2ecc71; }
+        .badge-gemuk { background-color: #f39c12; }
+        .badge-obesitas { background-color: #e74c3c; }
+
+        @media (max-width: 500px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Simulasi Interaktif Kebugaran Jasmani (PJOK)</h1>
+        <p>Kelas 11 SMA - Perhitungan IMT, Kebutuhan Kalori, & Target Denyut Nadi Latihan</p>
+    </header>
+
+    <div class="grid-container">
+        <!-- SKENARIO A -->
+        <div class="card">
+            <div class="card-header">Skenario A (Kondisi Awal / Utama)</div>
+            <form id="formA">
+                <div class="form-group">
+                    <label for="genderA">Jenis Kelamin</label>
+                    <select id="genderA">
+                        <option value="pria">Laki-laki</option>
+                        <option value="wanita">Perempuan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="usiaA">Usia (Tahun)</label>
+                    <input type="number" id="usiaA" value="16" min="10" max="100">
+                </div>
+                <div class="form-group">
+                    <label for="tbA">Tinggi Badan (cm)</label>
+                    <input type="number" id="tbA" value="165" min="100" max="250">
+                </div>
+                <div class="form-group">
+                    <label for="bbA">Berat Badan (kg)</label>
+                    <input type="number" id="bbA" value="65" min="30" max="200">
+                </div>
+                <div class="form-group">
+                    <label for="aktivitasA">Tingkat Aktivitas Fisik</label>
+                    <select id="aktivitasA">
+                        <option value="1.2">Jarang Berolahraga (Sedentari)</option>
+                        <option value="1.375">Ringan (1-3 hari/minggu)</option>
+                        <option value="1.55" selected>Sedang (3-5 hari/minggu)</option>
+                        <option value="1.725">Berat (6-7 hari/minggu)</option>
+                        <option value="1.9">Sangat Berat (Atlet/Fisik Tinggi)</option>
+                    </select>
+                </div>
+            </form>
+
+            <div class="result-box" id="resultA">
+                <!-- Hasil simulasi A dimuat di sini oleh JS -->
+            </div>
+        </div>
+
+        <!-- SKENARIO B -->
+        <div class="card">
+            <div class="card-header">Skenario B (Perbandingan / Target)</div>
+            <form id="formB">
+                <div class="form-group">
+                    <label for="genderB">Jenis Kelamin</label>
+                    <select id="genderB">
+                        <option value="pria">Laki-laki</option>
+                        <option value="wanita">Perempuan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="usiaB">Usia (Tahun)</label>
+                    <input type="number" id="usiaB" value="16" min="10" max="100">
+                </div>
+                <div class="form-group">
+                    <label for="tbB">Tinggi Badan (cm)</label>
+                    <input type="number" id="tbB" value="165" min="100" max="250">
+                </div>
+                <div class="form-group">
+                    <label for="bbB">Berat Badan (kg)</label>
+                    <input type="number" id="bbB" value="58" min="30" max="200">
+                </div>
+                <div class="form-group">
+                    <label for="aktivitasB">Tingkat Aktivitas Fisik</label>
+                    <select id="aktivitasB">
+                        <option value="1.2">Jarang Berolahraga (Sedentari)</option>
+                        <option value="1.375">Ringan (1-3 hari/minggu)</option>
+                        <option value="1.55">Sedang (3-5 hari/minggu)</option>
+                        <option value="1.725" selected>Berat (6-7 hari/minggu)</option>
+                        <option value="1.9">Sangat Berat (Atlet/Fisik Tinggi)</option>
+                    </select>
+                </div>
+            </form>
+
+            <div class="result-box" id="resultB">
+                <!-- Hasil simulasi B dimuat di sini oleh JS -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function hitungKebugaran(gender, usia, tb, bb, aktivitas) {
+        // 1. Hitung IMT (Indeks Massa Tubuh)
+        const tbMeter = tb / 100;
+        const imt = bb / (tbMeter * tbMeter);
+
+        // Kategori IMT (Standar Kemenkes RI)
+        let kategoriIMT = "";
+        let badgeClass = "";
+        if (imt < 18.5) {
+            kategoriIMT = "Kurus (Kekurangan Berat Badan)";
+            badgeClass = "badge-kurus";
+        } else if (imt >= 18.5 && imt <= 25.0) {
+            kategoriIMT = "Normal (Ideal)";
+            badgeClass = "badge-normal";
+        } else if (imt > 25.0 && imt <= 27.0) {
+            kategoriIMT = "Kelebihan Berat Badan (Gemuk)";
+            badgeClass = "badge-gemuk";
+        } else {
+            kategoriIMT = "Obesitas";
+            badgeClass = "badge-obesitas";
+        }
+
+        // 2. Hitung BMR (Rumus Harris-Benedict) & Kebutuhan Kalori (TDEE)
+        let bmr = 0;
+        if (gender === "pria") {
+            bmr = 66.5 + (13.75 * bb) + (5.003 * tb) - (6.75 * usia);
+        } else {
+            bmr = 655.1 + (9.563 * bb) + (1.850 * tb) - (4.676 * usia);
+        }
+        const tdee = bmr * aktivitas;
+
+        // 3. Denyut Nadi Maksimal (DNM) & Target Zona Latihan (60% - 80% DNM)
+        const dnm = 220 - usia;
+        const dnZonemin = Math.round(dnm * 0.60);
+        const dnZonemax = Math.round(dnm * 0.80);
+
+        return {
+            imt: imt.toFixed(1),
+            kategoriIMT,
+            badgeClass,
+            bmr: Math.round(bmr),
+            tdee: Math.round(tdee),
+            dnm,
+            dnZonemin,
+            dnZonemax
+        };
+    }
+
+    function updateSimulasi() {
+        // Ambil Data Skenario A
+        const genderA = document.getElementById('genderA').value;
+        const usiaA = parseFloat(document.getElementById('usiaA').value) || 0;
+        const tbA = parseFloat(document.getElementById('tbA').value) || 0;
+        const bbA = parseFloat(document.getElementById('bbA').value) || 0;
+        const aktA = parseFloat(document.getElementById('aktivitasA').value);
+
+        // Ambil Data Skenario B
+        const genderB = document.getElementById('genderB').value;
+        const usiaB = parseFloat(document.getElementById('usiaB').value) || 0;
+        const tbB = parseFloat(document.getElementById('tbB').value) || 0;
+        const bbB = parseFloat(document.getElementById('bbB').value) || 0;
+        const aktB = parseFloat(document.getElementById('aktivitasB').value);
+
+        // Kalkulasi
+        const resA = hitungKebugaran(genderA, usiaA, tbA, bbA, aktA);
+        const resB = hitungKebugaran(genderB, usiaB, tbB, bbB, aktB);
+
+        // Render Skenario A
+        document.getElementById('resultA').innerHTML = `
+            <div class="result-item">Indeks Massa Tubuh (IMT): <span>${resA.imt}</span></div>
+            <div class="result-item">Kategori: <span class="badge ${resA.badgeClass}">${resA.kategoriIMT}</span></div>
+            <div class="result-item">Kebutuhan Kalori Harian (TDEE): <span>${resA.tdee} kcal</span></div>
+            <div class="result-item">Denyut Nadi Maksimal (DNM): <span>${resA.dnm} bpm</span></div>
+            <div class="result-item">Target Zona Latihan (60%-80%): <span>${resA.dnZonemin} - ${resA.dnZonemax} bpm</span></div>
+        `;
+
+        // Render Skenario B
+        document.getElementById('resultB').innerHTML = `
+            <div class="result-item">Indeks Massa Tubuh (IMT): <span>${resB.imt}</span></div>
+            <div class="result-item">Kategori: <span class="badge ${resB.badgeClass}">${resB.kategoriIMT}</span></div>
+            <div class="result-item">Kebutuhan Kalori Harian (TDEE): <span>${resB.tdee} kcal</span></div>
+            <div class="result-item">Denyut Nadi Maksimal (DNM): <span>${resB.dnm} bpm</span></div>
+            <div class="result-item">Target Zona Latihan (60%-80%): <span>${resB.dnZonemin} - ${resB.dnZonemax} bpm</span></div>
+        `;
+    }
+
+    // Event Listener untuk update otomatis saat input berubah
+    const inputs = document.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        input.addEventListener('input', updateSimulasi);
+    });
+
+    // Jalankan sekali saat halaman pertama dibuka
+    updateSimulasi();
+</script>
+
+</body>
+</html>
